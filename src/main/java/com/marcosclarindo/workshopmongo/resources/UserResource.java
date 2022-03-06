@@ -54,4 +54,13 @@ public class UserResource {
 		return ResponseEntity.noContent().build(); // retorna o codigo 200
 	}
 	
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody UserDTO objDto, @PathVariable String id){
+		User obj = service.fromDTO(objDto); // convertendo o DTO para User
+		obj.setId(id); // id da requisição
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
+		
+	}
+	
 }
